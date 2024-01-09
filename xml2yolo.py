@@ -19,7 +19,7 @@ def convert_single_file(xml_path, yolo_path):
         for obj in root.findall("object"):
             class_name = obj.find("name").text
 
-            if class_name == "enemy":
+            if class_name == "enemy": # Class Name
                 bbox = obj.find("bndbox")
                 xmin = float(bbox.find("xmin").text)
                 ymin = float(bbox.find("ymin").text)
@@ -34,8 +34,8 @@ def convert_single_file(xml_path, yolo_path):
                 yolo_file.write(f"0 {x_center:.6f} {y_center:.6f} {width:.6f} {height:.6f}\n")
 
 if __name__ == "__main__":
-    xml_folder = "train"  # Папка, содержащая файлы Pascal VOC XML
-    yolo_folder = "yolo"  # Папка для сохранения файлов в формате YOLO
+    xml_folder = "train"  # Pascal VOC XML Folder
+    yolo_folder = "yolo"  # YOLO Save Folder
 
     if not os.path.exists(yolo_folder):
         os.makedirs(yolo_folder)
